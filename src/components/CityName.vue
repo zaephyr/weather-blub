@@ -31,6 +31,8 @@ export default {
                 this.city = '';
                 this.erorr = '';
                 this.closeCityName();
+            } else if (!this.city) {
+                this.error = 'Empty input';
             } else {
                 this.error = 'Duplicate city!';
             }

@@ -25,6 +25,18 @@ export default {
             cityList: [],
         };
     },
+    mounted() {
+        if (localStorage.cityList === undefined || localStorage.length == 0) {
+            localStorage.cityList = JSON.stringify(this.cityList);
+        } else {
+            this.cityList = JSON.parse(localStorage.cityList);
+        }
+    },
+    watch: {
+        cityList(newCityList) {
+            localStorage.cityList = JSON.stringify(newCityList);
+        },
+    },
     methods: {
         addCity(val) {
             this.cityList.push(val);
