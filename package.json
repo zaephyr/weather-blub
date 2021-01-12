@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-pull-refresh": "^0.2.7",
+    "vue-pull-to": "^0.1.8"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -27,9 +27,9 @@ export default {
         passCityList() {
             if (this.city && this.duplicateCity(this.city)) {
                 this.cityList.push(this.cityName(this.city));
-                this.$emit('getList', this.cityList);
                 this.city = '';
-                this.erorr = '';
+                this.error = '';
+                this.$emit('getList', this.cityList);
                 this.closeCityName();
             } else if (!this.city) {
                 this.error = 'Empty input';
