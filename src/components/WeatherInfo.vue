@@ -21,4 +21,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+input {
+    font-size: 1rem;
+    height: 1.2rem;
+    padding: 8px 0 8px 4px;
+}
+</style>

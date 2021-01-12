@@ -2,8 +2,10 @@
     <div>
         <div>
             <input type="text" v-model="city" />
-            <button @click="closeCityName">Cancel</button>
-            <button @click="passCityList">Finish</button>
+            <div style="margin-top: 10px">
+                <button @click="closeCityName" style="margin-right: 10px" class="btn">Cancel</button>
+                <button @click="passCityList" class="btn">Finish</button>
+            </div>
         </div>
         <p v-if="error">{{ error }}</p>
     </div>

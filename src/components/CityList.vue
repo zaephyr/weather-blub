@@ -6,20 +6,24 @@
             :cityList="cityList"
             @getList="cityList = $event"
         ></city-name>
-        <button v-else @click="clicked = true">Add City</button>
-        <div v-if="!cityList[0]">No cities</div>
-        <ul v-else>
-            <li v-for="city in cityObj" :key="city.name" @click="selectedCity = city.name">
-                <span>{{ city.name }}</span
-                ><span>{{ city.temperature }}&#8451;</span>
-            </li>
-        </ul>
-        <weather-info
-            v-if="selectedCity"
-            :city="selectedCity"
-            :key="selectedCity"
-            :fetchData="fetchData(selectedCity)"
-        />
+        <button v-else @click="clicked = true" class="btn">Add City</button>
+        <div class="container">
+            <div v-if="!cityList[0]">No cities</div>
+
+            <div v-for="(city, index) in cityObj" :key="city.name + city.temperature" class="city">
+                <span style="margin: auto 0;" @click="selectedCity = city.name">{{ city.name }}</span
+                ><span>{{ city.temperature }}&#8451; </span>
+                <ion-icon name="trash-outline" class="trash" @click="removeCity(index)"></ion-icon>
+            </div>
+
+            <weather-info
+                v-if="selectedCity"
+                :city="selectedCity"
+                :key="selectedCity"
+                :fetchData="fetchData(selectedCity)"
+                class="card"
+            />
+        </div>
     </vue-pull-refresh>
 </template>
 
@@ -97,11 +101,57 @@ export default {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     resolve(this.fetchAllTemps);
+                    this.selectedCity = '';
                 }, 700);
             });
+        },
+        removeCity(index) {
+            this.cityList.splice(index, 1);
+            this.fetchAllTemps();
         },
     },
 };
 </script>
 
-<style></style>
+<style>
+.btn {
+    width: fit-content;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 4px solid rebeccapurple;
+    border-radius: 0.3rem;
+    font-size: 0.75rem;
+    background: rebeccapurple;
+    color: white;
+}
+
+.container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.city {
+    vertical-align: middle;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.trash {
+    margin-left: 1rem;
+    color: rebeccapurple;
+}
+
+.trash:hover {
+    color: white;
+    background-color: rebeccapurple;
+}
+
+.card {
+    margin-top: 2rem;
+}
+</style>
