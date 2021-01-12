@@ -1,7 +1,7 @@
 <template>
     <div>
-        <city-name></city-name>
-        <button>Add City</button>
+        <city-name v-if="clicked" @clicked="clicked = false" :cityList="cityList"></city-name>
+        <button v-else @click="clicked = true">Add City</button>
         <div v-if="!cityList[0]">No cities</div>
         <ul v-else>
             <li v-for="city in cityList" :key="city">{{ city }}</li>
@@ -17,8 +17,14 @@ export default {
     },
     data() {
         return {
+            clicked: false,
             cityList: [],
         };
+    },
+    methods: {
+        addCity(val) {
+            this.cityList.push(val);
+        },
     },
 };
 </script>
